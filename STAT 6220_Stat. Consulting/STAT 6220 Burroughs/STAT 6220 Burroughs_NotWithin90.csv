@@ -1,0 +1,24 @@
+Patient name,DOB,Date of first ADT,Date seen by RB,Year (Before/After),within 90 days of first ADT,within 90,"PSA, TT, calcium, vit D obtained",Complete Labs,Referred by ,New referral for bone health
+L.H.,2/20/1939,3/4/2016,10/2/2017,0,No,0,"No vitamin D, TT",0,Rip,Yes
+P.H.,3/8/1952,4/8/2009,10/17/2017,0,No,0,"No vitamin D, TT",0,Hoxie,Yes
+F.S.,9/25/1925,1/31/2013,10/20/2017,0,No,0,"No calcium, vitamin D, TT",0,Hoxie,Yes
+D.H.,8/28/1941,5/23/2017,10/31/2017,0,No,0,No TT,0,Hoxie,Yes 
+E.B.,5/12/1948,2/21/2012,11/1/2017,0,No,0,No TT,0,Rip,Yes
+S.A.,3/11/1957,2/21/2017,11/2/2017,0,No,0,"No calcium, vitamin D, TT",0,Hoxie,Yes
+C.W.,11/16/1969,1/8/2016,7-Nov,0,No,0,"No calcium, vitamin D, TT",0,Hoxie,Yes
+L.M.,8/3/1935,Jul-99,11/30/2017,0,No ,0,"No TT, vit D ",0,Mindrup,Yes
+K.W.,1/7/1931,4/20/2017,12/1/2017,0,No,0,"No TT, calcium, vit D ",0,Janda,Yes
+V.K.,7/23/1940,11/16/2016,12/1/2017,0,No,0,"No TT, vit D ",0,Mindrup,Yes
+B.Q.,4/22/1937,5/25/2016,12/8/2017,0,No,0,No TT,0,Rip,Yes
+G.P.,4/15/1949,2/23/2016,12/13/2017,0,No,0,No TT,0,Janda,Yes
+T.W.,4/16/1933,3/23/2016,12/14/2017,0,No,0,No TT,0,Richardson,Yes
+T.G.,1/16/1940,10/19/2009,12/15/2017,0,No,0,"No TT, vit D ",0,Mindrup,Yes
+D.P.,1/17/1937,8/2010-5/2012 and 8/2014,12/19/2017,0,No,0,Yes,1,Richardson,Yes
+N.M.,5/11/1950,5/31/2016,12/19/2017,0,No,0,"No TT, vit D ",0,Rip,Yes
+T.L.,3/4/1962,8/18/2016,10/9/2018,1,No,0,Yes,1,Janda,Yes
+N.B.,12/29/1938,7/1/2018,10/25/2018,1,No,0,Yes,1,Hoxie,Yes
+S.M.,4/7/1939,2/1/2017,10/31/2018,1,No,0,Yes,1,Rip,Yes
+D.B.,10/12/1953,4/24/2018,11/5/2018,1,No,0,Yes,1,Hoxie,Yes
+L.S.,5/9/1934,4/26/2018,11/13/2018,1,No,0,"No, missing TT",0,Mindrup,Yes
+R.F.,11/18/1944,4/16/2018,11/27/2018,1,No,0,"No, missing TT ",0,Richardson,Yes
+D.S.,10/9/1945,5/31/2018,12/7/2018,1,No,0,Yes,1,Mindrup,Yes

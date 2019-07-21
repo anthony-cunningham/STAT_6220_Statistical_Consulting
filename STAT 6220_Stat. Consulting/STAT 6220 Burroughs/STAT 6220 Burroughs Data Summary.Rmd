@@ -1,0 +1,188 @@
+---
+title: "Burroughs Patient Data Summary"
+author: "Anthony Cunningham"
+date: "March 25, 2019"
+output: pdf_document
+---
+
+# 1) Introduction
+
+It is recommended that men whose prostate cancer is being treated using ADT undergo a Bone Health Assessment within 90 days of initial treatment, as a major side effect of ADT involves decreasing bone densities of patients.  This entails seeing a bone specialist and undergoing a series of four tests.  Our client, Rikka Burroughs, had been working with a urology clinic on a quality improvement project for fulfillment of her Doctor of Nursing Practice requirements.  At her clinic, this protocol had not been strictly adhered to, with the perception that getting seen by a bone specialist, regardless of timeframe relative to ADT treatment, is good enough.  Furthermore, the process of ordering these four proper tests had, historically, been cumbersome.  In response to this, Rikka implemented a change to the referral protocol at her clinic, which was intended to streamline the process.  To evaluate the effectiveness of her treatment, she tracked the number of patients who had been seen by a specialist, whether or not they were seen within the 90-day threshold, whether all four lab exams were done on these patients (and, if not, which ones were missing), and the before/after results of surveys of six urologists at the clinic meant to quantify their attitudes and awareness towards the recommended referral process.
+
+The objectives of Rikka's study on her intervention were threefold:
+ 
+1) Increase the number of referrals of men on ADT to these bone specialists.
+2) Increase the proportion of men on ADT who undergo the set of four proper lab tests.
+3) Increase knowledge of urologists and awareness to the recommended protocols.
+
+The purpose of this report is to present our findings regarding whether or not Rikka's intervention (the streamlined referral process) achieved her desired objectives, as well as provide visual representations of these results so that she may present these findings.
+
+```{r, Getting Data In Graphics, echo=FALSE, message=FALSE, include=FALSE}
+Burroughs <- read.csv("C:/Users/Anthony/OneDrive/Documents/STAT 6220 Burroughs/STAT 6220 Burroughs_2017-18 Combined.csv", 
+                      header = TRUE)
+
+##  "Year" variable is read as an integer initially; use this command to tell R to read it as a factor with 2 levels
+Burroughs$Year <- as.character(Burroughs$Year)
+Burroughs$Year[Burroughs$Year == "2017"] <- "Oct-Dec 2017"
+Burroughs$Year[Burroughs$Year == "2018"] <- "Oct-Dec 2018"
+Burroughs$Year <- as.factor(Burroughs$Year)
+
+library(dplyr)
+##  use this to obtain counts for each combo of factor levels
+within90_table <- count(Burroughs, Year, within90)
+Labs <- count(Burroughs, Year, Complete.Labs)
+
+library(ggplot2)
+```
+
+```{r, Getting Data In Analyses, echo=FALSE, message=FALSE}
+labs <- rbind(c(11, 4), c(4, 21))
+labs_cool <- rbind(c(11, 4, 15), c(4, 21, 25), c(15, 25, 40))
+colnames(labs_cool) <- c("2018", "2017", "Total")
+rownames(labs_cool) <- c("Complete Set", "Incomplete Set", "Total")
+
+within90 <- rbind(c(8, 7), c(9, 16))
+within90_cool <- rbind(c(8, 7, 15), c(9, 16, 25), c(15, 25, 40))
+colnames(within90_cool) <- c("2018", "2017", "Total")
+rownames(within90_cool) <- c("Within 90", "Not Within 90", "Total")
+
+library(exact2x2)
+```
+
+# 2) Data Collection
+
+Rikka's study had monitored the number of patients on ADT who had been seen by a bone specialist within a private specialty urology clinic, a determination of if the patient underwent the complete set of lab exams upon being seen by the specialist, which lab exams were missing (if any), a determination of if the patient had been seen by a bone specialist within 90 days of initial ADT treatment, and which urologist made the referral.  This data was collected from October to December for three time periods: 2016, 2017 and 2018.  The treatment was applied prior to the 2018 time period.  It had been recommeded by Rikka's advisor that we not use the 2016 data; reasons were not specified. This simplified our analyses to a nice before/after comparison which will be used throughout the rest of this report; "before" represents October-December 2017 data, "after" represents October-December 2018 data.
+
+We ignored the potential urologist clustering effect, as modeling was deemed unnecessary after considering Rikka's goals and presentation medium, in which she will be presenting a poster that summarizes our findings, as well as writing an executive summary.
+
+Rikka also collected survey data from the six urologists employed at her clinic, with the intention of understanding the urologists' opinions regarding the referral process, how often they referred their patients and their views and knowledge of industry recommendations.  This survey was conducted at two time periods: in September 2018, prior to implementation of Rikka's treatment, and December 2018, after the conclusion of Rikka's data collection.  Her survey was conducted using a five-point Likert Scale.  This was done in order to monitor the changes in urologists' opinion and knowledge of industry-recommended protocols, as well as monitor how they thought their personal referral rate changed. 
+
+## 2.1) Issues to Consider
+
+Rikka's study has a few issues, addressed here.  One is that her study did not include randomization of which observation received the treatment.  As such, we cannot claim that any differences in referral rates or lab rates were caused by her intervention; we can only say that, assuming a statistically significant difference exists, that a difference is present.  Another issue is that data was not collected on patients on ADT who had not been seen by a bone specialist, which is needed in order to determine if the referral rate for all ADT patients differed before and after implementation of the treatment.  In lieu, we analyzed the difference in the proportion of patients who had been seen by a specialist within 90 days of initial ADT treatment, since an implicit goal in Rikka's study is to have patients seen sooner so that the threat of low bone densities can be detected and mitigated more effectively.  Another issue is the small number of patients seen in each time period, as well as the small number of urologists who completed the survey.  Generally, small samples affect the power of analyses of differences; only big differences are judged to be statistically significant. For the former, this manifests into small cell counts in 2-by-2 contingency tables. [CITATION NEEDED] In order to mitigate this small sample effect, our analysis of comparing differences of proportions was done using Fisher's Exact Test.  For the survey data, significant differences is nearly impossible to detect with a sample size of six. To show variability in survey responses, we chose to graphically represent the distribution of responses.
+
+# 3) Data Analysis
+
+## Objective 1: Was there a significant difference in the proportion of ADT patients who underwent the complete set of lab exams?
+```{r, Create Labs Table, echo=FALSE}
+labs_cool
+```
+
+Sample Proportions:
+
+(Before) 4/25 or 16%
+(After) 11/15 or ~ 73%
+
+### Graphical Output
+
+```{r, Labs Graphics, echo=FALSE}
+## Stacked Bar Chart of Proportion of Patients with Complete Lab Set
+stack_lab <- ggplot(Labs) + geom_bar(aes(y = n, x = Year, fill = Complete.Labs), stat = "identity", position = "fill") + 
+    labs(title = "Proportion of Complete vs Incomplete Lab Sets \n Among New Patients, By Year", 
+         y = "Percent    ",
+         fill = "Complete Labs", 
+         tag = "Figure 1.\n") +
+    theme(plot.title = element_text(size = 14, hjust = 0.5), 
+          axis.title.y = element_text(angle = 0, vjust = 0.54), 
+          plot.tag = element_text(size = 12), 
+          plot.tag.position = "top", 
+          text = element_text(size = 12)) +
+    scale_fill_manual(values = c("#ccb85f","#000000")) + expand_limits(y = 1.05) + 
+    annotate("text", x = 1, y = 1.05, label = "Proportion of 'Yes': 4/25") + 
+    annotate("text", x = 2, y = 1.05, label = "Proportion of 'Yes': 11/15")
+
+just_Year <- plyr::revalue(Labs$Year, c("Oct-Dec 2017"="2017", "Oct-Dec 2018"="2018"))
+## Donut Plot
+donut_lab <- ggplot(Labs) + geom_bar(aes(y = n, x = 1, fill = Complete.Labs), stat = "identity", position = "fill") + coord_polar(theta = "y") + 
+  facet_wrap(~ Year) + theme(axis.title = element_blank(), axis.text = element_blank(), axis.ticks = element_blank(), 
+                             panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+                             panel.border = element_blank(), strip.background = element_blank(), 
+                             strip.text = element_blank()) + xlim(0, 1.5) + 
+  geom_text(aes(x = 0, y = 0, label = as.factor(just_Year)), size = 5, fontface = "bold") + 
+  labs(title = "Complete vs Incomplete Lab Sets: \n Proportion of New Patients, By Year", 
+       subtitle = "Note: Patient Data Collected October-December Within Each Year", 
+       fill = "Complete Labs",
+       tag = "Figure 1.\n") +
+  theme(plot.title = element_text(size = 14, hjust = 0.5), 
+        plot.subtitle = element_text(size = 12, hjust = 0.5), 
+        plot.tag = element_text(size = 12), 
+        plot.tag.position = "top", 
+        legend.position = "bottom", 
+        text = element_text(size = 12)) +
+  scale_fill_manual(values = c("#ccb85f","#000000"))
+stack_lab
+donut_lab
+```
+
+### Significance Test: Fisher's Exact Test
+```{r, Fishers Exact Test, echo=FALSE}
+        # Fisher's Exact Test #
+fisher.test(labs)
+```
+
+### Conclusion
+According to Fisher's Exact Test, we have ample evidence of a statistically significant difference in the proportion of ADT patients who underwent the complete lab set after intervention vs. before intervention (p-value = 0.0005).  We are 95% confident that the odds of a patient undergoing the complete lab set was between 2.459 and 92.936 times greater after intervention than before.  This result is very encouraging because, even with the small sample considered, we were still able to detect a significant increase in patients undergoing the proper lab exams. Furthermore, a greater proportion of cancer patients acquired the information necessary for bone health specialists to diagnose and treat a major side effect of their cancer treatment. While we are not able to say that Rikka's intervention caused this, we can point to this result as a reason to study this quality improvement further in a randomized experiment.
+
+## Question 2: Was there a significant difference in the proportion of patients seen by a bone specialist within 90 days of initial ADT treatment?
+```{r, Within90 Table, echo=FALSE}
+within90_cool
+```
+
+Sample Proportions:
+
+(Before) 9/25 or 36%
+(After) 8/15 or ~ 53%
+                    
+### Graphical Output                    
+```{r, within 90 Graphics, echo=FALSE}
+## Stacked Bar Chart of Proportion of Patients Seen by NP Within 90 Days of Initial ADT Treatment
+stack_within90 <- ggplot(within90_table) + geom_bar(aes(y = n, x = Year, fill = within90), stat = "identity", position = "fill") + 
+  ylab("Percent  ") + 
+  ggtitle("Proportion of New Patients Seen Within 90 Days \n of Initial ADT Treatment, By Year") + 
+  labs(tag = "Figure 2.\n") + 
+  theme(plot.title = element_text(size = 14, hjust = 0.5), 
+        axis.title.y = element_text(angle = 0, vjust = 0.54), 
+        plot.tag = element_text(size = 12), 
+        plot.tag.position = "top", 
+        text = element_text(size = 12)) +
+  scale_fill_manual(values = c("#ccb85f","#000000")) + expand_limits(y = 1.05) + 
+  annotate("text", x = 1, y = 1.05, label = "Proportion of 'Yes': 9/25") + 
+  annotate("text", x = 2, y = 1.05, label = "Proportion of 'Yes': 8/15")
+
+just_Year <- plyr::revalue(within90_table$Year, c("Oct-Dec 2017"="2017", "Oct-Dec 2018"="2018"))
+## Donut Plot
+donut_within90 <- ggplot(within90_table) + geom_bar(aes(y = n, x = 1, fill = within90), stat = "identity", position = "fill") + coord_polar(theta = "y") + 
+  facet_wrap(~ Year) + theme(axis.title = element_blank(), axis.text = element_blank(), axis.ticks = element_blank(), 
+                             panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+                             panel.border = element_blank(), strip.background = element_blank(), 
+                             strip.text = element_blank()) + xlim(0, 1.5) + 
+  geom_text(aes(x = 0, y = 0, label = as.factor(just_Year)), size = 5, fontface = "bold") + 
+  labs(title = "Proportion of New Patients Seen Within 90 Days \n of Initial ADT Treatment, By Year", 
+       subtitle = "Note: Patient Data Collected October-December Within Each Year", 
+       tag = "Figure 2.\n") +
+  theme(plot.title = element_text(size = 14, hjust = 0.5), 
+        plot.subtitle = element_text(size = 12, hjust=0.5), 
+        plot.tag = element_text(size = 12), 
+        plot.tag.position = "top", 
+        legend.position = "bottom", 
+        text = element_text(size = 12)) +
+  scale_fill_manual(values = c("#ccb85f","#000000"))
+
+stack_within90
+donut_within90
+```
+
+### Test: Fisher's Exact Test
+```{r, Within90 Fishers Exact Test}
+        # Fisher's Exact Test #
+fisher.test(within90)
+```
+
+### Conclusion
+According to Fisher's Exact Test, we do not have evidence of a significant difference in the proportion of ADT patients getting seen within 90 days of initial ADT treatment after intervention vs before (p-value =  0.3355). While this result is disappointing, we can use this opportunity to address the issues in study design and sample size.  Due to a lack of a randomization of the treatment on our subjects, we cannot establish a causal inference between the treatment and the results.  Additionally, the small samples do not give us much statistical power to determine significant differences before and after treatment.  In this case, the difference was not large enough to supply evidence of a significant difference.
+
+# Final Remarks
+
+Despite the design and sample size issues of this study, Rikka should be excited about these results.  Even if we cannot establish a causal effect of Rikka's quality improvement treatment and the increase in proportion of patients undergoing the complete lab set and the proportion of patients getting seen by a specialist within 90 days of initial ADT treatment, we did see improvements in these rates (even if they are not statistically significant, in the case of the latter analysis), meaning that a greater proportion of patients were tested and seen by a bone specialist in a manner in line with the industry standard, early enough upon initial ADT treatment to where these urologists and bone specialists can help detect lower bone densities in these patients, as well as mitigate these potential risks in a proactive fashion.  Our results at least keep the door open for further exploration of Rikka's quality improvement implementation, in a randomized environment on a larger scale.  This could stand to benefit a greater number of patients if further researched.
+
+# References

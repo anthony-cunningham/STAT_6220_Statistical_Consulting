@@ -1,0 +1,18 @@
+Patient name,DOB,Date of first ADT,Date seen by RB,Year (Before/After),within 90 days of first ADT,within 90,"PSA, TT, calcium, vit D obtained",Complete Labs,Referred by 
+R.S.,5/22/1935,9/14/2017,10/12/2017,0,Yes,1,"No, missing TT",0,Richardson
+A.F.,11/13/1941,9/15/2017,10/16/2017,0,Yes,1,"No, missing TT",0,Richardson
+J.R.,5/28/1946,9/12/2017,10/17/2017,0,Yes,1,Yes,1,Rip
+J.P.,2/5/1924,9/12/2017,10/17/2017,0,Yes,1,"No, missing TT",0,Janda
+M.B.,1/1/1947,10/9/2017,11/13/2017,0,Yes,1,"No, missing Ca, Vit D, TT",0,Mindrup
+R.S.,10/1/1946,10/18/2017,11/20/2017,0,Yes,1,"No, missing Ca, Vit D",0,Rip
+H.C.,3/4/1928,10/24/2017,11/27/2017,0,Yes,1,"No, missing TT, Vit D",0,Hoxie
+S.C.,7/14/1952,11/8/2017,12/13/2017,0,Yes,1,Yes,1,Rip
+B.P.,9/13/1944,10/16/2017,12/18/2017,0,Yes,1,Yes,1,Rip
+C.S.,12/15/1956,7/23/2018,10/4/2018,1,Yes,1,"No, missing TT (ordered by Lisa prior)",0,Hoxie
+R.B.,5/11/1936,9/10/2018,10/11/2018,1,Yes,1,"No, missing TT (ordered by Lisa) ",0,Janda
+J.F.,9/12/1947,9/26/2018,10/29/2018,1,Yes,1,Yes,1,Janda
+N.T.,4/7/1945,10/1/2018,11/5/2018,1,Yes,1,Yes,1,Rip
+E.B.,10/26/2025,9/7/2018,11/13/2018,1,Yes,1,Yes,1,Richardson
+D.S.,2/22/1948,10/2/2018,11/13/2018,1,Yes,1,Yes,1,Hoxie
+M.D.,5/1/1965,10/23/2018,11/27/2018,1,Yes,1,Yes,1,Rip
+D.M.,7/31/1924,11/30/2018,12/21/2018,1,Yes,1,Yes,1,Hoxie

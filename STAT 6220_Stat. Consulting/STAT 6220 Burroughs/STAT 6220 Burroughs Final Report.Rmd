@@ -1,0 +1,29 @@
+---
+title: "Burroughs Final Report"
+author: "Anthony Cunningham"
+date: "February 17, 2019"
+output: word_document
+---
+
+#1 Introduction
+
+
+
+#2 Data Collection
+
+
+
+#3 Data Analysis
+## 3.1 Results
+
+
+## 3.2 Graphical Output
+
+
+# Conclusion
+
+
+
+# References
+
+

@@ -1,0 +1,160 @@
+---
+title: "Bone Health Assessment Protocol in Men with Prostate Cancer"
+author: "Anthony Cunningham"
+date: "March 13, 2019"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+library(dplyr)
+library(ggplot2)
+
+Burroughs <- read.csv("C:/Users/Anthony/OneDrive/Documents/STAT 6220 Burroughs/STAT 6220 Burroughs_2017-18 Combined.csv", 
+                      header = TRUE)
+Burroughs$Year <- as.character(Burroughs$Year)
+Burroughs$Year[Burroughs$Year == "2017"] <- "Oct-Dec 2017"
+Burroughs$Year[Burroughs$Year == "2018"] <- "Oct-Dec 2018"
+Burroughs$Year <- as.factor(Burroughs$Year)
+
+within90_table <- count(Burroughs, Year, within90)
+Labs <- count(Burroughs, Year, Complete.Labs)
+```
+
+## Background
+
+- Men with Prostate Cancer are typically treated with ADT
+- Major Side Effect: Lower Bone Densities
+- ADT Patients' Recommended Evaluation Protocol
+- Rikka's Clinic had not strictly adhered to this (Why?)
+
+## Rikka's Treatment
+
+- In response, Rikka implemented a streamlined referral process that, with one click, ordered all four lab tests and scheduled the patient with a bone health specialist.
+- Patient Data Collected Oct.-Dec. of 2016-2018 
+    - 2017: 69 Total Patients (25 New) 
+    - 2018: 76 Total Patients (15 New)
+- 2016 Data not used per recommendation
+- Rikka collected relevant data only on New Patients
+
+## Objectives
+
+- Increase in proportion of patients referred to bone health specialist
+- Increase proportion of patients who undergo the complete lab set
+- Increase urologist knowledge and decrease perceived barriers to implementing proper bone health assessment protocols
+
+## Objective 1: Increase Patient Referrals
+
+- Problem: Rikka does not have data about ADT Patients who have not been referred; cannot compare proportions of referred vs not referred
+- Subset: New Patients (Patients' Initial Meeting with Rikka)
+    - 2017: 25 New Patients
+    - 2018: 15 New Patients
+- Compare proportion of New Patients Seen within 90 Days of Initial ADT treatment
+
+## Objective 1 (Cont.)
+
+```{r, within90, echo=FALSE}
+within90 <- rbind(c(8, 7), c(9, 16))
+within90_cool <- rbind(c(8, 9, 15), c(9, 16, 25), c(15, 25, 40))
+colnames(within90_cool) <- c("Post", "Pre", "Total")
+rownames(within90_cool) <- c("Within 90", "Not Within 90", "Total")
+within90_cool
+fisher.test(within90)
+```
+
+## Objective 1 (Cont.)
+
+```{r, within90 analysis, echo=FALSE}
+## Stacked Bar Chart of Proportion of Patients Seen by NP Within 90 Days of Initial ADT Treatment
+stack_within90 <- ggplot(within90_table) + geom_bar(aes(y = n, x = Year, fill = within90), stat = "identity", position = "fill") + 
+  ylab("Percent  ") + 
+  ggtitle("Proportion of New Patients Seen Within 90 Days \n of Initial ADT Treatment, By Year") + 
+  labs(tag = "Figure 2.\n") + 
+  theme(plot.title = element_text(size = 14, hjust = 0.5), 
+        axis.title.y = element_text(angle = 0, vjust = 0.54), 
+        plot.tag = element_text(size = 12), 
+        plot.tag.position = "top", 
+        text = element_text(size = 12)) +
+  scale_fill_manual(values = c("#ccb85f","#000000")) + expand_limits(y = 1.05) + 
+  annotate("text", x = 1, y = 1.05, label = "Proportion of 'Yes': 9/25") + 
+  annotate("text", x = 2, y = 1.05, label = "Proportion of 'Yes': 8/15")
+stack_within90
+```
+
+## Objective 1 (Cont.)
+
+```{r, within90 Donut, echo=FALSE}
+just_Year <- plyr::revalue(within90_table$Year, c("Oct-Dec 2017"="2017", "Oct-Dec 2018"="2018"))
+## Donut Plot
+donut_within90 <- ggplot(within90_table) + geom_bar(aes(y = n, x = 1, fill = within90), stat = "identity", position = "fill") + coord_polar(theta = "y") + 
+  facet_wrap(~ Year) + theme(axis.title = element_blank(), axis.text = element_blank(), axis.ticks = element_blank(), 
+                             panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+                             panel.border = element_blank(), strip.background = element_blank(), 
+                             strip.text = element_blank()) + xlim(0, 1.5) + 
+  geom_text(aes(x = 0, y = 0, label = as.factor(just_Year)), size = 5, fontface = "bold") + 
+  labs(title = "Proportion of New Patients Seen Within 90 Days \n of Initial ADT Treatment, By Year", 
+       subtitle = "Note: Patient Data Collected October-December Within Each Year", 
+       tag = "Figure 2.\n") +
+  theme(plot.title = element_text(size = 14, hjust = 0.5), 
+        plot.subtitle = element_text(size = 12, hjust=0.5), 
+        plot.tag = element_text(size = 12), 
+        plot.tag.position = "top", 
+        legend.position = "bottom", 
+        text = element_text(size = 12)) +
+  scale_fill_manual(values = c("#ccb85f","#000000"))
+donut_within90
+```
+
+## Objective 2: Increase Proportion of Complete Lab Sets
+
+```{r, Labs analysis, echo=FALSE}
+labs <- rbind(c(11, 4), c(4, 21))
+labs_cool <- rbind(c(11, 4, 15), c(4, 21, 25), c(15, 25, 40))
+colnames(labs_cool) <- c("Post", "Pre", "Total")
+rownames(labs_cool) <- c("Complete Set", "Incomplete Set", "Total")
+labs_cool
+fisher.test(labs)
+```
+
+## Objective 2 (Cont.)
+
+```{r, Labs Stack, echo=FALSE}
+stack_lab <- ggplot(Labs) + geom_bar(aes(y = n, x = Year, fill = Complete.Labs), stat = "identity", position = "fill") + 
+    labs(title = "Proportion of Complete vs Incomplete Lab Sets \n Among New Patients, By Year", 
+         y = "Percent    ",
+         fill = "Complete Labs", 
+         tag = "Figure 1.\n") +
+    theme(plot.title = element_text(size = 14, hjust = 0.5), 
+          axis.title.y = element_text(angle = 0, vjust = 0.54), 
+          plot.tag = element_text(size = 12), 
+          plot.tag.position = "top", 
+          text = element_text(size = 12)) +
+    scale_fill_manual(values = c("#ccb85f","#000000")) + expand_limits(y = 1.05) + 
+    annotate("text", x = 1, y = 1.05, label = "Proportion of 'Yes': 4/25") + 
+    annotate("text", x = 2, y = 1.05, label = "Proportion of 'Yes': 11/15")
+stack_lab
+```
+
+## Objective 2 (Cont.)
+
+```{r, Labs Donut, echo=FALSE}
+just_Year <- plyr::revalue(Labs$Year, c("Oct-Dec 2017"="2017", "Oct-Dec 2018"="2018"))
+## Donut Plot
+donut_lab <- ggplot(Labs) + geom_bar(aes(y = n, x = 1, fill = Complete.Labs), stat = "identity", position = "fill") + coord_polar(theta = "y") + 
+  facet_wrap(~ Year) + theme(axis.title = element_blank(), axis.text = element_blank(), axis.ticks = element_blank(), 
+                             panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+                             panel.border = element_blank(), strip.background = element_blank(), 
+                             strip.text = element_blank()) + xlim(0, 1.5) + 
+  geom_text(aes(x = 0, y = 0, label = as.factor(just_Year)), size = 5, fontface = "bold") + 
+  labs(title = "Complete vs Incomplete Lab Sets: \n Proportion of New Patients, By Year", 
+       subtitle = "Note: Patient Data Collected October-December Within Each Year", 
+       fill = "Complete Labs",
+       tag = "Figure 1.\n") +
+  theme(plot.title = element_text(size = 14, hjust = 0.5), 
+        plot.subtitle = element_text(size = 12, hjust = 0.5), 
+        plot.tag = element_text(size = 12), 
+        plot.tag.position = "top", 
+        legend.position = "bottom", 
+        text = element_text(size = 12)) +
+  scale_fill_manual(values = c("#ccb85f","#000000"))
+donut_lab
+```

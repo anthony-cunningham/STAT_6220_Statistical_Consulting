@@ -1,0 +1,68 @@
+Patient,DOB,Date of first ADT,Date seen by RB,Year,within 90 days of first ADT,within90,"PSA, TT, calcium, vit D obtained",Completed Labs,Referred by 
+W.R.,7/15/1934,5/10/2012,10/3/2016,0,No,0,"No TT, vitamin D, calcium",0,Hoxie
+J.D.,12/29/1932,1/28/2011,10/5/2016,0,No,0,"No TT, vitamin D, calcium",0,Rippentrop
+D.S.,4/3/1941,8/16/2013,10/13/2016,0,No,0,"No TT, vitamin D, calcium",0,Rippentrop
+P.L.,12/13/1927,7/1/1905,10/21/2016,0,No,0,"No TT, vitamin D, calcium",0,Rippentrop
+J.M.,12/5/1938,3/7/2013,10/24/2016,0,No,0,"No TT, vitamin D",0,Hoxie
+J.J.,1/2/1936,6/18/1905,10/24/2018,0,No,0,"No TT, vitamin D, calcium",0,Rippentrop
+A.E.,5/16/1929,9/20/2011,10/24/2016,0,No,0,"No TT, vitamin D, calcium",0,Hoxie
+R.H.,2/6/1938,Mar-12,11/2/2016,0,No,0,"No TT, vitamin D, calcium",0,Rippentrop
+C.Z.,1/11/1923,3/1/2011,11/4/2016,0,No,0,"No TT, vitamin D, calcium",0,Rippentrop
+C.Z.,9/9/1938,10/17/2014,11/10/2016,0,No,0,"No TT, vitamin D, calcium",0,Rippentrop
+J.D.,10/19/1936,12/18/2009,11/10/2016,0,No,0,"No TT, vitamin D, calcium",0,Rippentrop
+H.O.,4/7/1955,9/29/2014,11/11/2016,0,No,0,"No TT, vitamin D",0,Hoxie
+J.P.,3/29/1947,6/16/2015,11/15/2016,0,No,0,"No TT, vitamin D, calcium",0,Hoxie
+H.B.,8/13/1936,7/1/2012,11/17/2016,0,No,0,"No TT, vitamin D",0,Hoxie
+R.D.,11/6/1957,May-16,11/18/2016,0,No,0,No TT,0,Mindrup
+R.S.,4/21/1926,4/8/2016,11/30/2016,0,No,0,"No TT, vitamin D",0,Hoxie
+S.Z.,3/2/1937,10/31/2016,10/31/2016,0,Yes,1,"No TT, but not appropriate, 1st injection",0,Mindrup
+C.D.,7/14/1936,2/27/2012,12/8/2016,0,No,0,"No TT, vitamin D, calcium",0,Mittelberg
+M.H.,6/14/1947,1/18/2012,12/9/2016,0,No,0,"No TT, vitamin D, calcium",0,Rippentrop
+M.F.,11/21/1955,7/10/2009,12/9/2016,0,No,0,"No TT, vitamin D, calcium",0,Rippentrop
+H.T.,2/4/1940,2/23/2016,12/9/2016,0,No,0,"No TT, vitamin D, calcium",0,Hoxie
+C.M.,1/19/1933,1/2/2015,12/12/2016,0,No,0,"No TT, vitamin D, calcium",0,Rippentrop
+I.O.,6/6/1940,4/16/2015,12/13/2016,0,No,0,"No TT, vitamin D, calcium",0,Mittelberg
+D.O.,3/2/1940,3/12/2013,12/16/2016,0,No ,0,"No TT, vitamin D, calcium",0,Rippentrop
+C.S.,8/12/1947,2/22/2013,12/19/2016,0,No,0,"No TT, vitamin D, calcium",0,Mittelberg
+R.M.,3/19/1929,9/26/2012,12/28/2016,0,No,0,"No, TT, vitamin D, calcium",0,Rippentrop
+J.E.,6/24/1933,1/1/2000,12/28/2016,0,No,0,"No, TT, vitamin D, calcium",0,Mittelberg
+R.S.,5/22/1935,9/14/2017,10/12/2017,0,Yes,1,"No, missing TT",0,Richardson
+A.F.,11/13/1941,9/15/2017,10/16/2017,0,Yes,1,"No, missing TT",0,Richardson
+J.R.,5/28/1946,9/12/2017,10/17/2017,0,Yes,1,Yes,1,Rip
+J.P.,2/5/1924,9/12/2017,10/17/2017,0,Yes,1,"No, missing TT",0,Janda
+M.B.,1/1/1947,10/9/2017,11/13/2017,0,Yes,1,"No, missing Ca, Vit D, TT",0,Mindrup
+R.S.,10/1/1946,10/18/2017,11/20/2017,0,Yes,1,"No, missing Ca, Vit D",0,Rip
+H.C.,3/4/1928,10/24/2017,11/27/2017,0,Yes,1,"No, missing TT, Vit D",0,Hoxie
+S.C.,7/14/1952,11/8/2017,12/13/2017,0,Yes,1,Yes,1,Rip
+B.P.,9/13/1944,10/16/2017,12/18/2017,0,Yes,1,Yes,1,Rip
+C.S.,12/15/1956,7/23/2018,10/4/2018,1,Yes,1,"No, missing TT (ordered by Lisa prior)",0,Hoxie
+R.B.,5/11/1936,9/10/2018,10/11/2018,1,Yes,1,"No, missing TT (ordered by Lisa) ",0,Janda
+J.F.,9/12/1947,9/26/2018,10/29/2018,1,Yes,1,Yes,1,Janda
+N.T.,4/7/1945,10/1/2018,11/5/2018,1,Yes,1,Yes,1,Rip
+E.B.,10/26/2025,9/7/2018,11/13/2018,1,Yes,1,Yes,1,Richardson
+D.S.,2/22/1948,10/2/2018,11/13/2018,1,Yes,1,Yes,1,Hoxie
+M.D.,5/1/1965,10/23/2018,11/27/2018,1,Yes,1,Yes,1,Rip
+D.M.,7/31/1924,11/30/2018,12/21/2018,1,Yes,1,Yes,1,Hoxie
+L.H.,2/20/1939,3/4/2016,10/2/2017,0,No,0,"No vitamin D, TT",0,Rip
+P.H.,3/8/1952,4/8/2009,10/17/2017,0,No,0,"No vitamin D, TT",0,Hoxie
+F.S.,9/25/1925,1/31/2013,10/20/2017,0,No,0,"No calcium, vitamin D, TT",0,Hoxie
+D.H.,8/28/1941,5/23/2017,10/31/2017,0,No,0,No TT,0,Hoxie
+E.B.,5/12/1948,2/21/2012,11/1/2017,0,No,0,No TT,0,Rip
+S.A.,3/11/1957,2/21/2017,11/2/2017,0,No,0,"No calcium, vitamin D, TT",0,Hoxie
+C.W.,11/16/1969,1/8/2016,7-Nov,0,No,0,"No calcium, vitamin D, TT",0,Hoxie
+L.M.,8/3/1935,Jul-99,11/30/2017,0,No ,0,"No TT, vit D ",0,Mindrup
+K.W.,1/7/1931,4/20/2017,12/1/2017,0,No,0,"No TT, calcium, vit D ",0,Janda
+V.K.,7/23/1940,11/16/2016,12/1/2017,0,No,0,"No TT, vit D ",0,Mindrup
+B.Q.,4/22/1937,5/25/2016,12/8/2017,0,No,0,No TT,0,Rip
+G.P.,4/15/1949,2/23/2016,12/13/2017,0,No,0,No TT,0,Janda
+T.W.,4/16/1933,3/23/2016,12/14/2017,0,No,0,No TT,0,Richardson
+T.G.,1/16/1940,10/19/2009,12/15/2017,0,No,0,"No TT, vit D ",0,Mindrup
+D.P.,1/17/1937,8/2010-5/2012 and 8/2014,12/19/2017,0,No,0,Yes,1,Richardson
+N.M.,5/11/1950,5/31/2016,12/19/2017,0,No,0,"No TT, vit D ",0,Rip
+T.L.,3/4/1962,8/18/2016,10/9/2018,1,No,0,Yes,1,Janda
+N.B.,12/29/1938,7/1/2018,10/25/2018,1,No,0,Yes,1,Hoxie
+S.M.,4/7/1939,2/1/2017,10/31/2018,1,No,0,Yes,1,Rip
+D.B.,10/12/1953,4/24/2018,11/5/2018,1,No,0,Yes,1,Hoxie
+L.S.,5/9/1934,4/26/2018,11/13/2018,1,No,0,"No, missing TT",0,Mindrup
+R.F.,11/18/1944,4/16/2018,11/27/2018,1,No,0,"No, missing TT ",0,Richardson
+D.S.,10/9/1945,5/31/2018,12/7/2018,1,No,0,Yes,1,Mindrup

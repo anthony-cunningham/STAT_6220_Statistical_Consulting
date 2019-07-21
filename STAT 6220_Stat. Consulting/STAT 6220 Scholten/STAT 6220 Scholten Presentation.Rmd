@@ -1,0 +1,56 @@
+---
+title: "Osteoporosis Referral and Treatment Protocol"
+author: "Anthony Cunningham"
+date: "March 29, 2019"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+library(dplyr)
+library(ggplot2)
+library(coin)
+
+## Used for Wilcoxon Signed-Rank Test
+pre<- c(5,6,6,7,4)
+post <- c(8,8,8,7,6)
+
+## Used for Slope Graph
+Scholten_Survey <- read.csv("C:/Users/Anthony/OneDrive/Documents/STAT 6220 Scholten/Ortho_Surveys.csv", header = TRUE)
+Scholten_Survey <- plyr::rename(Scholten_Survey, c("Pretest.or.Posttest" = "Test", "StaffNumber" = "ID"))
+Scholten_Survey <- select(Scholten_Survey, Test, ID, Total)
+Scholten_Survey$ID <- as.factor(Scholten_Survey$ID)
+Scholten_Survey$Total[3] <- 6.05
+Scholten_Survey$Total[4] <- 8.05
+Scholten_Survey$Test <- factor(Scholten_Survey$Test,levels=levels(Scholten_Survey$Test)[c(2,1)])
+```
+
+## Obj. 3: Staff Osteoporosis Knowledge Increase
+
+- Knowledge of Osteoporosis Treatment and Referral Protocols
+- Before vs After Sandra's Treatment
+- "Knowledge" measured using a test of 8 questions
+- "Knowledge" is Staff Score out of 8
+
+## Objective 3 (Cont.)
+
+```{r, test score analysis, echo=FALSE}
+## Wilcoxon Signed-Rank Test Results
+wilcoxsign_test(post ~ pre, dist=c("exact"), zero.method="Pratt")
+```
+
+## Objective 3 (Cont.)
+
+```{r, test score line graph, echo=FALSE}
+slope_survey <- ggplot(Scholten_Survey, aes(x = Test, y = Total, group = ID)) + 
+  geom_line(aes(color = Scholten_Survey$ID), size = 1) + 
+  geom_point() + 
+  geom_vline(xintercept=1, linetype="dashed", size=.1) + 
+  geom_vline(xintercept=2, linetype="dashed", size=.1) +
+  labs(title = "Staff Osteoporosis Knowledge Scores\nPre vs. Post-Implementation", 
+       y = "Score (Out of 8)", 
+       color = "Staff ID") +  
+       #caption = "Note: 2 Staff Members Had Scores of '6' Before and '8' After") + 
+  theme(plot.title = element_text(size = 14, hjust = 0.5), 
+        text = element_text(size = 12))
+slope_survey
+```

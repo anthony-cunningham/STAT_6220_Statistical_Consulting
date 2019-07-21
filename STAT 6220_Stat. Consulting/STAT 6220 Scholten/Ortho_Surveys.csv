@@ -1,0 +1,11 @@
+Pretest or Posttest ,StaffNumber,Question 1,Question 2,Question 3,Question 4,Question 5,Question 6,Question 7,Question 8,Total ,Percent_Correct
+Pretest,1,0,0,1,0,1,1,1,1,5,0.625
+Posttest,1,1,1,1,1,1,1,1,1,8,1
+Pretest,2,0,0,1,1,1,1,1,1,6,0.75
+Posttest,2,1,1,1,1,1,1,1,1,8,1
+Pretest,3,0,0,1,1,1,1,1,1,6,0.75
+Posttest,3,1,1,1,1,1,1,1,1,8,1
+Pretest,4,0,1,1,1,1,1,1,1,7,0.875
+Posttest,4,1,1,0,1,1,1,1,1,7,0.875
+Pretest,5,0,1,0,1,0,1,0,1,4,0.5
+Posttest,5,1,1,0,1,1,1,0,1,6,0.75
